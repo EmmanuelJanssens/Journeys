@@ -1,0 +1,6 @@
+[submodule "journeys-backend"]
+	path = journeys-backend
+	url = git@github.com:EmmanuelJanssens/Journeys-backend.git
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:EmmanuelJanssens/Journeys-frontend.git
