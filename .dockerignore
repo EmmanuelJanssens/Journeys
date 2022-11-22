@@ -1,9 +1,5 @@
-node_modules
-dist
-data
-.vscode
-package-lock.json
-.git
-.env
-.env.development
-.env.local
+**/node_modules
+**/.vscode
+**/.git
+**/.env.development
+**/.env.local
