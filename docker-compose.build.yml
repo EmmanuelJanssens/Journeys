@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  journeys-app:
+    image: ${JOURNEYS_IMAGE_REPOSITORY}/journeys-app:${DOCKER_IMAGE_TAG}
+    build:
+      context: ./
+      dockerfile: App.Dockerfile
+
+  journeys-api:
+    image: ${JOURNEYS_IMAGE_REPOSITORY}/journeys-api:${DOCKER_IMAGE_TAG}
+    build:
+      context: ./
+      dockerfile: Api.Dockerfile

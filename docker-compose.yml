@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+
+  journeys-app:
+
+    image: ${JOURNEYS_IMAGE_REPOSITORY}/journeys-app:${DOCKER_IMAGE_TAG}
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_MAPTILER_API_KEY: ${VITE_MAPTILER_API_KEY}
+      VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY}
+      JOURNEYS_API_HOST: ${JOURNEYS_API_HOST}
+    container_name: journeys-app
+    working_dir: /app
+    command: npm run preview
+    restart: always
+
+  journeys-api:
+    image: ${JOURNEYS_IMAGE_REPOSITORY}/journeys-api:${DOCKER_IMAGE_TAG}
+
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    working_dir: /app
+    container_name: journeys-api
+    command : npm run start
+    restart: always
+
+  journeys-db:
+
+    image: neo4j:4.4.5-community
+    environment:
+      NEO4JLABS_PLUGINS: '["apoc"]'
+      NEO4J_apoc_export_file_enabled: "true"
+      NEO4J_apoc_import_file_enabled: "true"
+    ports :
+      - "7687:7687"
+      - "7474:7474"
+    container_name: journeys-db
+    volumes:
+      - ./import:/import
+      - ./data:/var/lib/neo4j/data
+      - ./conf:/var/lib/neo4j/conf
+
+    restart: always
+networks:
+  default:
+    name: journeys-web
