@@ -1,5 +1,5 @@
-[submodule "journeys-backend"]
-	path = journeys-backend
+[submodule "backend"]
+	path = backend
 	url = git@github.com:EmmanuelJanssens/Journeys-backend.git
 [submodule "frontend"]
 	path = frontend
